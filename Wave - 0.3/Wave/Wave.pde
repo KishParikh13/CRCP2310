@@ -63,7 +63,7 @@ void mousePressed() {
   if (charge > 200) {
     
     //create new wave object
-    waves.add(new WaveParticle(pApp, baseline, 0));
+    waves.add(new WaveParticle(this, baseline, 0));
     println("launching wave");
     
     // deduction for buying wave

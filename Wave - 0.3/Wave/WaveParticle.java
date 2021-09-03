@@ -1,5 +1,5 @@
 
-//import processing.core*;
+import processing.core.*;
 
 class WaveParticle {
 
@@ -16,7 +16,7 @@ class WaveParticle {
   WaveParticle(PApplet pApp, int baseline, int timeOffset) {
     this.pApp = pApp;
     this.pos = new PVector(-50, baseline + 6);
-    this.speed = new PVector(1.8, 0);
+    this.speed = new PVector(1.8f, 0);
     this.active =  true;
     this.rising =  false;
     this.timeOffset = timeOffset;
@@ -39,7 +39,7 @@ class WaveParticle {
   void move () {
     
     if (active) {
-      if (pos.x < width/2) {
+      if (pos.x < pApp.width/2) {
         rise();
         rising = true;
       } else if (waveSize <= 0) {
@@ -53,19 +53,19 @@ class WaveParticle {
   
   void go () {
        
-    noStroke();
+    pApp.noStroke();
   
     // for the rising and falling states of the wave
     if (rising) {
-      fill(#2C8CBF);
-      triangle(pos.x+(7*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(30*waveSize), pos.y+(waveSize));
-      fill(#FFFFFF);
-      triangle(pos.x+(26*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(30*waveSize), pos.y+(waveSize)-4);
+      pApp.fill(44, 140, 191);
+      pApp.triangle(pos.x+(7*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(30*waveSize), pos.y+(waveSize));
+      pApp.fill(255);
+      pApp.triangle(pos.x+(26*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(30*waveSize), pos.y+(waveSize)-4);
     } else if (!rising) {
-      fill(#2C8CBF);
-      triangle(pos.x+(7*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(30*waveSize), pos.y+(waveSize));
-      fill(#FFFFFF);
-      triangle(pos.x+(7*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(12*waveSize), pos.y+(waveSize)+4);
+      pApp.fill(44, 140, 191);
+      pApp.triangle(pos.x+(7*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(30*waveSize), pos.y+(waveSize));
+      pApp.fill(255);
+      pApp.triangle(pos.x+(7*waveSize), pos.y+(waveSize), pos.x+(23*waveSize), pos.y-(10*waveSize), pos.x+(12*waveSize), pos.y+(waveSize)+4);
     }
     
     move();

@@ -54,7 +54,9 @@ void draw () {
   }
   
   //charge up
-  charge += 1;
+  if (charge < 1001) {
+    charge += 1;
+  }
 }
 
 void mousePressed() {

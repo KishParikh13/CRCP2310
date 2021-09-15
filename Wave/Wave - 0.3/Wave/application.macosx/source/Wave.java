@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Wave extends PApplet {
+
 // Kish Parikh
 // Nature & Code
 // Center of Creative Computation | SMU
@@ -14,27 +30,27 @@ int baseline = 400;
 int charge = 200;
 PApplet pApp;
 
-void setup () {
-  size(1000, 500);
+public void setup () {
+  
   pApp = this;
 }
 
-void draw () {
+public void draw () {
 
   // sky blue backgound
-  background(#EAF8FF);
+  background(0xffEAF8FF);
 
   // ocean and beach
   noStroke();
-  fill(#2C8CBF);
+  fill(0xff2C8CBF);
   rect(0, baseline, width, height/2);
-  fill(#FCCD8F);
+  fill(0xffFCCD8F);
   rect(width-20, baseline, 200, height);
 
   // and sun
-  fill(#FFD53B);
+  fill(0xffFFD53B);
   circle(60, 60, 50);
-  fill(#FFD53B, 70);
+  fill(0xffFFD53B, 70);
   circle(60, 60, 70);
   
   // charge
@@ -59,7 +75,7 @@ void draw () {
   }
 }
 
-void mousePressed() {
+public void mousePressed() {
   
   //charge is like points/energy to buy a wave with
   if (charge > 200) {
@@ -73,6 +89,16 @@ void mousePressed() {
       charge -= 200;
     } else {
       charge -= 100;
+    }
+  }
+}
+  public void settings() {  size(1000, 500); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Wave" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
     }
   }
 }

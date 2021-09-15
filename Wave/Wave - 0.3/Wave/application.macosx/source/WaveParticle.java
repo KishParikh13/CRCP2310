@@ -1,7 +1,7 @@
 
 import processing.core.*;
 
-public class WaveParticle {
+class WaveParticle {
 
   PApplet pApp;
   
@@ -9,6 +9,7 @@ public class WaveParticle {
   int timeOffset;
   PVector pos, speed;
   boolean active, rising;
+  int timePassed = 0;
   
   WaveParticle() {}
   

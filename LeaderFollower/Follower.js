@@ -1,4 +1,4 @@
-class SpringyDude {
+class Follower {
 
     constructor(leader, follower, springing, damping, jitter) {
         this.leader = leader;

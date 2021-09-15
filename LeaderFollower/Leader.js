@@ -1,4 +1,4 @@
-class Bot {
+class Leader {
     constructor(r, col, pos, spd) {
         this.r = r; // radius
         this.col = col;

@@ -10,13 +10,13 @@ function setup() {
     createCanvas(600, 600);
     bounds = createVector(400, 400);
 
-    leader = new Bot(15, color(200, 100, 0), createVector(0, 0),
+    leader = new Leader(15, color(200, 100, 0), createVector(0, 0),
         createVector(random(-1.5, 1.5), random(-1.5, 1.5)));
 
-    follower = new Bot(8, color(15, 170, 255), createVector(0, 0),
+    follower = new Leader(8, color(15, 170, 255), createVector(0, 0),
         createVector(0, 0));
 
-    dude = new SpringyDude(leader, follower, .003, .9, .75);
+    dude = new Follower(leader, follower, .003, .9, .75);
 }
 
 function draw() {

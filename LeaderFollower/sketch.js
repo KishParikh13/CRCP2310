@@ -1,35 +1,46 @@
 // Kish Parikh
-// PFJS Follder Leader Program
+// PFJS Follower Leader Program
 
-let bounds; // vector
-let leader; //Vector
-let follower; //Vector
-let dude; // SpringyDude
+let numDogs = 20;
+
+let bone; //Vector
+let dogs = []; // SpringyDude
 
 function setup() {
-    createCanvas(600, 600);
-    bounds = createVector(400, 400);
+    createCanvas(1000, 600);
 
-    leader = new Leader(15, color(200, 100, 0), createVector(0, 0),
-        createVector(random(-1.5, 1.5), random(-1.5, 1.5)));
+    bone = new Leader(createVector(0,0));
 
-    follower = new Leader(8, color(15, 170, 255), createVector(0, 0),
-        createVector(0, 0));
+    for (let i = 0; i < numDogs; i++) {
+        dogs[i] = new Follower(bone, createVector(0, 0), i*3);
+    }
 
-    dude = new Follower(leader, follower, .003, .9, .75);
 }
 
 function draw() {
-    background(255);
+    background(78, 181, 109);
     translate(width / 2, height / 2);
-    drawBounds();
 
-    dude.slither();
-    dude.checkBoundsCollision(bounds);
-}
+	bone.draw();
 
-function drawBounds() {
-    noFill();
-    stroke(0);
-    rect(-bounds.x / 2, -bounds.y / 2, bounds.x, bounds.y);
+    for (let i = 0; i < numDogs; i++) {
+
+        for (let j = 0; j < numDogs; j++) {
+            if (dogs[i].pos.x - dogs[j].pos.x < 20 && dogs[i].pos.x - dogs[j].pos.x > 0) {
+                dogs[i].pos.x += 1;
+            }
+            if (dogs[i].pos.x - dogs[j].pos.x > -20 && dogs[i].pos.x - dogs[j].pos.x < 0) {
+                dogs[i].pos.x -= 1;
+            }
+
+            if (dogs[i].pos.y - dogs[j].pos.y < 20 && dogs[i].pos.y - dogs[j].pos.y > 0) {
+                dogs[i].pos.y += 1;
+            }
+            if (dogs[i].pos.y - dogs[j].pos.y > -20 && dogs[i].pos.y - dogs[j].pos.y < 0) {
+                dogs[i].pos.y -= 1;
+            }
+        }
+
+       dogs[i].draw();
+    }
 }

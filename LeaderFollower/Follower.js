@@ -1,43 +1,26 @@
 class Follower {
 
-    constructor(leader, follower, springing, damping, jitter) {
+    constructor(leader, pos, speedFactor) {
         this.leader = leader;
-        this.follower = follower;
-        this.springing = springing;
-        this.damping = damping;
-        this.jitter = jitter;
+        this.pos = pos;
+        this.speedFactor = speedFactor;
     }
 
-    slither() {
-        // jitter just adds some drama
-        this.leader.spd.add(createVector(random(-this.jitter, this.jitter), random(-this.jitter, this.jitter)));
-        this.leader.move();
+    draw() {
+        stroke(255);
+        fill(255, 125, 125);
 
-        let deltaX = this.leader.pos.x - this.follower.pos.x;
-        let deltaY = this.leader.pos.y - this.follower.pos.y;
+        let deltaX = (mouseX - this.pos.x) / (this.speedFactor * 20);
+        let deltaY = (mouseY - this.pos.y) / (this.speedFactor * 20);
 
-        // create springing effect
-        deltaX *= this.springing;
-        deltaY *= this.springing;
-        this.follower.spd.x += deltaX;
-        this.follower.spd.y += deltaY;
+        if (abs(mouseX - this.pos.x) > 100) {
+            this.pos.x += deltaX;
+        }
 
-        this.follower.move();
+        if (abs(mouseY - this.pos.y) > 40) {
+            this.pos.y += deltaY;
+        }
 
-        // slow down springing
-        this.follower.spd.x *= this.damping;
-        this.follower.spd.y *= this.damping;
-
-        this.leader.draw();
-        this.follower.draw();
-
-        stroke(150);
-        line(this.leader.pos.x, this.leader.pos.y, this.follower.pos.x, this.follower.pos.y);
-        noStroke();
-    }
-
-    checkBoundsCollision(bounds) {
-        this.leader.checkBoundsCollision(bounds);
-        this.follower.checkBoundsCollision(bounds);
+        circle(this.pos.x - width / 2, this.pos.y - height / 2, 20);
     }
 }

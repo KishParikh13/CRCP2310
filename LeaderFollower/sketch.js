@@ -1,10 +1,15 @@
 // Kish Parikh
 // PFJS Follower Leader Program
 
-let numDogs = 20;
+let numDogs = 4;
 
 let bone; //Vector
 let dogs = []; // SpringyDude
+let img;
+
+function preload() {
+  img = loadImage('assets/Bone.png');
+}
 
 function setup() {
     createCanvas(1000, 600);

@@ -7,8 +7,6 @@ class Follower {
     }
 
     draw() {
-        stroke(255);
-        fill(255, 125, 125);
 
         let deltaX = (mouseX - this.pos.x) / (this.speedFactor * 20);
         let deltaY = (mouseY - this.pos.y) / (this.speedFactor * 20);
@@ -21,6 +19,8 @@ class Follower {
             this.pos.y += deltaY;
         }
 
+        stroke(255);
+        fill(255);
         circle(this.pos.x - width / 2, this.pos.y - height / 2, 20);
     }
 }
